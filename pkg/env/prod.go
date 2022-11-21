@@ -77,6 +77,7 @@ func newProd(ctx context.Context, log *logrus.Entry) (*prod, error) {
 			"ARO_GATEWAY_RESOURCEGROUP",
 			"ARO_MDSD_ENVIRONMENT",
 			"ARO_CLUSTER_MDSD_NAMESPACE",
+			"ARO_ACR_RESOURCE_ID",
 		} {
 			if _, found := os.LookupEnv(key); !found {
 				return nil, fmt.Errorf("environment variable %q unset", key)
