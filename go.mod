@@ -528,7 +528,6 @@ replace (
 	github.com/IBM-Cloud/terraform-provider-ibm => github.com/openshift/terraform-provider-ibm v1.26.2-openshift-2
 	github.com/c-bata/go-prompt => github.com/c-bata/go-prompt v0.2.5
 	github.com/circonus-labs/circonusllhist => github.com/openhistogram/circonusllhist v0.3.0
-	github.com/cockroachdb/errors => github.com/cockroachdb/errors v1.8.5
 	github.com/codahale/hdrhistogram => github.com/HdrHistogram/hdrhistogram-go v1.1.2
 	github.com/containernetworking/plugins => github.com/containernetworking/plugins v1.0.0
 	github.com/containers/image => github.com/containers/image v3.0.2+incompatible
@@ -559,7 +558,7 @@ replace (
 	github.com/openshift/cluster-api-provider-kubevirt => github.com/openshift/cluster-api-provider-kubevirt v0.0.0-20210719100556-9b8bc3666720
 	github.com/openshift/cluster-api-provider-ovirt => github.com/openshift/cluster-api-provider-ovirt v0.1.1-0.20230110131003-22d89b3fd9e2
 	github.com/openshift/console-operator => github.com/openshift/console-operator v0.0.0-20220902005223-378917170147
-	github.com/openshift/installer => github.com/jewzaam/installer-aro v0.9.0-master.0.20231127080144-4632dc500a4f
+	github.com/openshift/installer => github.com/hawkowl/installer-aro v0.0.0-20231218060051-e3d36018611b
 	github.com/openshift/library-go => github.com/openshift/library-go v0.0.0-20221018134251-bdb4fc834221
 	github.com/openshift/machine-api-operator => github.com/openshift/machine-api-operator v0.2.1-0.20220124104622-668c5b52b104
 	github.com/openshift/machine-config-operator => github.com/openshift/machine-config-operator v0.0.1-0.20230912144553-fb94e20d06d5
