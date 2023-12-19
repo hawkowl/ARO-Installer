@@ -46,8 +46,42 @@ func config(clusterDomain, apiIntIP, ingressIP string, gatewayDomains []string, 
 	return buf.Bytes(), nil
 }
 
+func service() (string, error) {
+	t := template.Must(template.New(unitFileName).Parse(unitFile))
+	buf := &bytes.Buffer{}
+
+	err := t.ExecuteTemplate(buf, unitFileName, nil)
+	if err != nil {
+		return "", err
+	}
+
+	return buf.String(), nil
+}
+
+func startpre() ([]byte, error) {
+	t := template.Must(template.New(prescriptFileName).Parse(preScriptFile))
+	buf := &bytes.Buffer{}
+
+	err := t.ExecuteTemplate(buf, prescriptFileName, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return buf.Bytes(), nil
+}
+
 func Ignition3Config(clusterDomain, apiIntIP, ingressIP string, gatewayDomains []string, gatewayPrivateEndpointIP string, restartDnsmasq bool) (*ign3types.Config, error) {
+	service, err := service()
+	if err != nil {
+		return nil, err
+	}
+
 	config, err := config(clusterDomain, apiIntIP, ingressIP, gatewayDomains, gatewayPrivateEndpointIP)
+	if err != nil {
+		return nil, err
+	}
+
+	startpre, err := startpre()
 	if err != nil {
 		return nil, err
 	}
@@ -67,22 +101,7 @@ func Ignition3Config(clusterDomain, apiIntIP, ingressIP string, gatewayDomains [
 				{
 					Node: ign3types.Node{
 						Overwrite: to.BoolPtr(true),
-						Path:      "/etc/NetworkManager/conf.d/00-use-dnsmasq-aro.conf",
-						User: ign3types.NodeUser{
-							Name: to.StringPtr("root"),
-						},
-					},
-					FileEmbedded1: ign3types.FileEmbedded1{
-						Contents: ign3types.Resource{
-							Source: to.StringPtr(dataurl.EncodeBytes([]byte("[main]\ndns=dnsmasq"))),
-						},
-						Mode: to.IntPtr(0644),
-					},
-				},
-				{
-					Node: ign3types.Node{
-						Overwrite: to.BoolPtr(true),
-						Path:      "/etc/NetworkManager/dnsmasq.d/00-aro-dns.conf",
+						Path:      "/etc/" + configFileName,
 						User: ign3types.NodeUser{
 							Name: to.StringPtr("root"),
 						},
@@ -93,6 +112,30 @@ func Ignition3Config(clusterDomain, apiIntIP, ingressIP string, gatewayDomains [
 						},
 						Mode: to.IntPtr(0644),
 					},
+				},
+				{
+					Node: ign3types.Node{
+						Overwrite: to.BoolPtr(true),
+						Path:      "/usr/local/bin/" + prescriptFileName,
+						User: ign3types.NodeUser{
+							Name: to.StringPtr("root"),
+						},
+					},
+					FileEmbedded1: ign3types.FileEmbedded1{
+						Contents: ign3types.Resource{
+							Source: to.StringPtr(dataurl.EncodeBytes(startpre)),
+						},
+						Mode: to.IntPtr(0744),
+					},
+				},
+			},
+		},
+		Systemd: ign3types.Systemd{
+			Units: []ign3types.Unit{
+				{
+					Contents: &service,
+					Enabled:  to.BoolPtr(true),
+					Name:     unitFileName,
 				},
 			},
 		},

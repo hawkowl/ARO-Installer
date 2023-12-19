@@ -1261,8 +1261,8 @@ github.com/hashicorp/logutils v1.0.0/go.mod h1:QIAnNjmIWmVIIkWDTG1z5v++HQmx9WQRO
 github.com/hashicorp/mdns v1.0.0/go.mod h1:tL+uN++7HEJ6SQLQ2/p+z2pH24WQKWjBPkE0mNTz8vQ=
 github.com/hashicorp/memberlist v0.1.3/go.mod h1:ajVTdAv/9Im8oMAAj5G31PhhMCZJV2pPBoIllUwCN7I=
 github.com/hashicorp/serf v0.8.2/go.mod h1:6hOLApaqBFA1NXqRQAsxw9QxuDEvNxSQRwA/JwenrHc=
-github.com/hawkowl/installer-aro v0.0.0-20231218060051-e3d36018611b h1:6jRgvRLGXcFQV0FkkNT61uoiYgyI/1SKR6EsgDnl7sE=
-github.com/hawkowl/installer-aro v0.0.0-20231218060051-e3d36018611b/go.mod h1:OxA34zSWG9hykTspreKS3wD0XR5LI4F4hKKOVyl0dFs=
+github.com/hawkowl/installer-aro v0.0.0-20231219051730-b6af6300d6eb h1:eH0GH36kH+iSl8uZab/+VWQMyrJrXCs17vU1yRi5HLQ=
+github.com/hawkowl/installer-aro v0.0.0-20231219051730-b6af6300d6eb/go.mod h1:OxA34zSWG9hykTspreKS3wD0XR5LI4F4hKKOVyl0dFs=
 github.com/hexops/gotextdiff v1.0.3 h1:gitA9+qJrrTCsiCl7+kh75nPqQt1cx4ZkudSTLoUqJM=
 github.com/hexops/gotextdiff v1.0.3/go.mod h1:pSWU5MAI3yDq+fZBTazCSJysOMbxWL1BSow5/V2vxeg=
 github.com/hinshun/vt10x v0.0.0-20220119200601-820417d04eec h1:qv2VnGeEQHchGaZ/u7lxST/RaJw+cv273q79D81Xbog=
