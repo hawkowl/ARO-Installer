@@ -20,6 +20,7 @@ import (
 
 	capzazure "sigs.k8s.io/cluster-api-provider-azure/api/v1beta1"
 
+	"github.com/Azure/ARO-RP/pkg/api"
 	mgmtcompute "github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2020-06-01/compute"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/Azure/go-autorest/autorest/to"
@@ -33,7 +34,6 @@ import (
 	azuretypes "github.com/openshift/installer/pkg/types/azure"
 	"github.com/openshift/installer/pkg/types/validation"
 
-	"github.com/openshift/installer-aro-wrapper/pkg/api"
 	"github.com/openshift/installer-aro-wrapper/pkg/util/computeskus"
 	utilpem "github.com/openshift/installer-aro-wrapper/pkg/util/pem"
 	"github.com/openshift/installer-aro-wrapper/pkg/util/pullsecret"
@@ -165,7 +165,7 @@ func (m *manager) generateInstallConfig(ctx context.Context) (*installconfig.Ins
 	// TODO: Load this from the OpenShiftCluster from the RP maybe, or get it
 	// from a manifest so it can be specified in the RP's
 	// OpenShiftClusterVersions?
-	
+
 	// Use Gen2 image SKU by default, fall back to Gen1 if either SKU only supports V1
 	imageSKU := "419-v2" // Gen2 SKU (default)
 
