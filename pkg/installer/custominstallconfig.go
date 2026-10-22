@@ -25,8 +25,6 @@ import (
 
 	"sigs.k8s.io/yaml"
 
-	"github.com/Azure/ARO-RP/pkg/api"
-
 	configv1 "github.com/openshift/api/config/v1"
 	"github.com/openshift/installer/pkg/asset"
 	"github.com/openshift/installer/pkg/asset/ignition"
@@ -122,14 +120,6 @@ func (m *manager) applyInstallConfigCustomisations(ctx context.Context, installC
 	for _, a := range targetassets.IgnitionConfigs {
 		err = g.Resolve(ctx, a)
 		if err != nil {
-			return nil, err
-		}
-	}
-
-	// Handle MTU3900 feature flag
-	if m.oc.Properties.NetworkProfile.MTUSize == api.MTU3900 {
-		m.log.Printf("applying feature flag %s", api.FeatureFlagMTU3900)
-		if err = m.overrideEthernetMTU(g); err != nil {
 			return nil, err
 		}
 	}

@@ -44,7 +44,6 @@ import (
 
 var expectedBootstrapStorageFileList = []string{"/etc/dnsmasq.conf",
 	"/usr/local/bin/aro-dnsmasq-pre.sh",
-	"/etc/NetworkManager/dispatcher.d/30-eth0-mtu-3900",
 
 	"/etc/hosts.d/aro.conf",
 	"/usr/local/bin/aro-etchosts-resolver.sh",
@@ -108,7 +107,6 @@ func fakeCluster() *api.OpenShiftCluster {
 			},
 			NetworkProfile: api.NetworkProfile{
 				GatewayPrivateEndpointIP: "203.0.113.2",
-				MTUSize:                  api.MTU3900,
 			},
 		},
 	}

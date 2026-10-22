@@ -108,11 +108,6 @@ spec:
     ingresscontroller.operator.openshift.io/deployment-ingresscontroller: default
   type: LoadBalancer
 `,
-	"/etc/NetworkManager/dispatcher.d/30-eth0-mtu-3900": `#!/bin/bash
-
-if [ "$1" == "eth0" ] && [ "$2" == "up" ]; then
-    ip link set $1 mtu 3900
-fi`,
 	"/opt/openshift/openshift/99_openshift-machineconfig_99-master-aro-dns.yaml": `apiVersion: machineconfiguration.openshift.io/v1
 kind: MachineConfig
 metadata:
